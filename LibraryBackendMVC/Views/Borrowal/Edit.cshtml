@@ -1,0 +1,60 @@
+@model LibraryBackendMVC.Models.Borrowal
+
+@{
+    ViewData["Title"] = "Edit Borrow Record";
+    var memberList = ViewData["MemberId"] as List<LibraryBackendMVC.Models.Member> ?? new();
+    var itemList = ViewData["ItemId"] as List<LibraryBackendMVC.Models.Item> ?? new();
+}
+
+<h2 class="mb-4">Edit Borrow Record</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="MemberId" class="form-label">Member</label>
+        <select asp-for="MemberId" class="form-select">
+            @foreach (var member in memberList)
+            {
+                if (member.Id == Model.MemberId)
+                {
+                    <option value="@member.Id" selected>@member.UserName</option>
+                }
+                else
+                {
+                    <option value="@member.Id">@member.UserName</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ItemId" class="form-label">Book(Item)</label>
+        <select asp-for="ItemId" class="form-select">
+            @foreach (var item in itemList)
+            {
+                if (item.Id == Model.ItemId)
+                {
+                    <option value="@item.Id" selected>@item.Title</option>
+                }
+                else
+                {
+                    <option value="@item.Id">@item.Title</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="BorrowTime" class="form-label">Borrow Time</label>
+        <input asp-for="BorrowTime" class="form-control" type="date" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ReturnTime" class="form-label">Return Time（留空代表未归还）</label>
+        <input asp-for="ReturnTime" class="form-control" type="date" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>

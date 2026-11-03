@@ -1,0 +1,39 @@
+@model IEnumerable<LibraryBackendMVC.Models.Borrowal>
+
+@{
+    ViewData["Title"] = "Borrow Record List";
+}
+
+<h2 class="mb-4">Borrow Record Management</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">Add New Borrow Record</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Member Name</th>
+            <th>Book Title</th>
+            <th>Borrow Time</th>
+            <th>Return Time</th>
+            <th>Status</th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td>@b.Id</td>
+                <td>@b.Member.UserName</td>
+                <td>@b.Item.Title</td>
+                <td>@b.BorrowTime.ToString("yyyy-MM-dd")</td>
+                <td>@(b.ReturnTime.HasValue ? b.ReturnTime.Value.ToString("yyyy-MM-dd") : "Not Returned")</td>
+                <td>@(b.ReturnTime.HasValue ? "Returned" : "Borrowed")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@b.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@b.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

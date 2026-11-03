@@ -1,0 +1,20 @@
+@model LibraryBackendMVC.Models.Member
+
+@{
+    ViewData["Title"] = "删除会员";
+}
+
+<h2 class="mb-4">删除会员</h2>
+<h3 class="text-danger">确定删除这条会员信息吗？</h3>
+
+<div class="card p-3 my-4">
+    <p><strong>会员ID：</strong>@Model.Id</p>
+    <p><strong>用户名：</strong>@Model.UserName</p>
+    <p><strong>密码：</strong>@Model.Password</p>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">确认删除</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">取消，返回列表</a>
+</form>

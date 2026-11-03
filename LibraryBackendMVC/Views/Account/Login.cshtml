@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "系统登录";
+}
+
+<h2 class="mb-4 text-center">图书管理系统登录</h2>
+
+@if (ViewBag.Msg != null)
+{
+    <div class="alert alert-danger text-center">@ViewBag.Msg</div>
+}
+
+<form asp-action="Login" method="post" class="w-50 mx-auto">
+    <div class="mb-3">
+        <label class="form-label">用户名</label>
+        <input type="text" name="username" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">密码</label>
+        <input type="password" name="password" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary w-100">登录</button>
+</form>

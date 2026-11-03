@@ -1,0 +1,37 @@
+@model IEnumerable<LibraryBackendMVC.Models.Item>
+
+@{
+    ViewData["Title"] = "图书列表";
+}
+
+<h2 class="mb-4">图书管理</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">新增图书</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>书名</th>
+            <th>作者</th>
+            <th>ISBN</th>
+            <th>库存</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Author</td>
+                <td>@item.Isbn</td>
+                <td>@item.Stock</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">编辑</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">删除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

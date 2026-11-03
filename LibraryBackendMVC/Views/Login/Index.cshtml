@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "登录";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h3 class="text-center">图书管理系统登录</h3>
+            <hr />
+            @if (ViewBag.Msg != null)
+            {
+                <div class="alert alert-danger">@ViewBag.Msg</div>
+            }
+            <form method="post">
+                <div class="mb-3">
+                    <label>账号</label>
+                    <input type="text" name="userName" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label>密码</label>
+                    <input type="password" name="password" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-primary w-100">登录</button>
+            </form>
+        </div>
+    </div>
+</div>

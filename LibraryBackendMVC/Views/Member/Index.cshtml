@@ -1,0 +1,33 @@
+@model IEnumerable<LibraryBackendMVC.Models.Member>
+
+@{
+    ViewData["Title"] = "会员管理";
+}
+
+<h2 class="mb-4">会员管理</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">新增会员</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.UserName</td>
+                <td>@item.Password</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">编辑</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">删除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

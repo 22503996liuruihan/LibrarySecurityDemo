@@ -1,0 +1,39 @@
+@model LibraryBackendMVC.Models.Borrowal
+
+@{
+    ViewData["Title"] = "Create Borrow Record";
+    var memberList = ViewData["MemberId"] as List<LibraryBackendMVC.Models.Member> ?? new();
+    var itemList = ViewData["ItemId"] as List<LibraryBackendMVC.Models.Item> ?? new();
+}
+
+<h2 class="mb-4">Add New Borrow Record</h2>
+
+<form asp-action="Create">
+    <div class="mb-3">
+        <label asp-for="MemberId" class="form-label">Member</label>
+        <select asp-for="MemberId" class="form-select">
+            @foreach (var member in memberList)
+            {
+                <option value="@member.Id">@member.UserName</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ItemId" class="form-label">Book(Item)</label>
+        <select asp-for="ItemId" class="form-select">
+            @foreach (var item in itemList)
+            {
+                <option value="@item.Id">@item.Title</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="BorrowTime" class="form-label">Borrow Time</label>
+        <input asp-for="BorrowTime" class="form-control" type="date" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>jixu
